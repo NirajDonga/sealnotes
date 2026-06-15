@@ -160,6 +160,21 @@ export function Client({ params, decryptedData, hash }: ClientProps) {
   }
 
   useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "s") {
+        event.preventDefault();
+        void handleSubmit(onSubmit)();
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  });
+
+  useEffect(() => {
     function handleBeforeUnload(event: BeforeUnloadEvent) {
       if (isDirty.some(Boolean)) {
         event.preventDefault();
@@ -438,4 +453,3 @@ export function Client({ params, decryptedData, hash }: ClientProps) {
     </div>
   );
 }
-
