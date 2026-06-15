@@ -37,7 +37,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/
     editor: Editor | null;
   }) {
     if (!editor) return null;
-  
+
     const buttons = [
       {
         icon: <RiBold className="size-5" />,
@@ -93,7 +93,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/
         {buttons.map(({ icon, onClick, isActive, disabled, tooltip }, index) => (
           <TooltipProvider key={index}>
             <Tooltip delayDuration={0}>
-              <TooltipTrigger>
+              <TooltipTrigger asChild>
                   <Button
                 key={index}
                 onClick={onClick}
@@ -112,4 +112,3 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/
       </div>
     );
   }
-  
