@@ -345,12 +345,14 @@ export function Client({ params, decryptedData, hash }: ClientProps) {
               <div className="flex-grow overflow-hidden" ref={tabsListRef}>
                 <TabsList className="inline-flex w-max space-x-1 p-1">
                   {getValues("tabs").map((tab, index) => (
-                    <TabsTrigger key={index} value={index.toString()} className="flex items-center whitespace-nowrap">
-                      <span className="truncate max-w-[100px]">{tab.title}</span>
+                    <div key={index} className="relative flex items-center">
+                      <TabsTrigger value={index.toString()} className="whitespace-nowrap pr-7">
+                        <span className="truncate max-w-[100px]">{tab.title}</span>
+                      </TabsTrigger>
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="ml-1 h-4 w-4 p-0"
+                        className="absolute right-1 h-4 w-4 p-0"
                         onClick={(e) => {
                           e.stopPropagation();
                           removeTab(index);
@@ -359,7 +361,7 @@ export function Client({ params, decryptedData, hash }: ClientProps) {
                         <X className="h-3 w-3" />
                         <span className="sr-only">Close tab</span>
                       </Button>
-                    </TabsTrigger>
+                    </div>
                   ))}
                 </TabsList>
               </div>
